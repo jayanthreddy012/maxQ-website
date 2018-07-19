@@ -5,17 +5,16 @@ let docclient = new aws.DynamoDB.DocumentClient();
 var router = express.Router();
 const { check, validationResult } = require('express-validator/check');
 /* GET users listing. */
-router.post('/',[check('firstname').not().isEmpty().withMessage('firstname cannot be empty.'),
-    check('lastname').not().isEmpty().withMessage('lastname cannot be empty.'),
-    check('email').not().isEmpty().withMessage('email cannot be empty.')
+router.post('/',[check('useremail').not().isEmpty().withMessage('userName cannot be empty.'),
+    check('password').not().isEmpty().withMessage('password cannot be empty.'),
 ], function (req, res, next) {
 
     const errors = validationResult(req);
     if (errors.isEmpty()) {
-        var params = {
+       /* var params = {
             TableName : "user_table",
             Item: {
-                "user_name": req.body.firstname+" "+req.body.lastname ,
+                "user_name": req.body.useremail ,
                 "user_email": req.body.email
             }
         };
@@ -26,7 +25,7 @@ router.post('/',[check('firstname').not().isEmpty().withMessage('firstname canno
                 console.log(" item:", JSON.stringify(data, null, 2));
             }
 
-        });
+        });*/
         let newuser = {
             firstname: req.body.firstname,
             lastname: req.body.lastname,
