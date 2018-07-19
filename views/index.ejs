@@ -34,7 +34,7 @@
             <img class="img-fluid mx-auto d-block " src="/images/maxq-logo.png">
         </div>
         <div class="">
-            <form role="search" method="post" id="loginForm" action="/users/add">
+            <form role="search" method="post" id="loginForm" action="/users/dashboard">
                 <div class="form-group">
                     <div class="row offset-3 col-6">
                         <label for="userName" style="margin-bottom: 0"><B>Useremail:</B></label><br>
@@ -60,26 +60,5 @@
     </div>
 </div>
 
-<table>
-    <tr>
-        <th>SHIPMENT_ID</th>
-        <th>EVENT_TIME</th>
-        <th>BOX_ID</th>
-        <th>TEMP1</th>
-        <th>TEMP2</th>
-        <th>BATT</th>
-    </tr>
-    <% data.forEach(function (box){ %>
-    <tr>
-        <td><%= box.shipment_id %></td>
-        <td><%= box.event_time %></td>
-        <% if(box.data != undefined){ %>
-        <td><%= box.box_id %></td>
-        <td><%= box.data.temp1 %></td>
-        <td><%= box.data.temp2 %></td>
-        <td><%= box.data.batt %></td>
-        <% } %>
-    </tr>
-    <% }) %>
-</table>
+
 <% include partials/footer.ejs %>

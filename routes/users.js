@@ -11,27 +11,21 @@ router.post('/',[check('useremail').not().isEmpty().withMessage('userName cannot
 
     const errors = validationResult(req);
     if (errors.isEmpty()) {
-       /* var params = {
-            TableName : "user_table",
-            Item: {
-                "user_name": req.body.useremail ,
-                "user_email": req.body.email
-            }
+        let time=new Date().getTime()-600000;
+        var params = {
+            TableName : "shipment_table",
+
         };
-        docclient.put(params, function (err, data) {
+        docclient.scan(params, function (err, data) {
             if (err) {
                 console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
             } else {
+                console.log(time);
                 console.log(" item:", JSON.stringify(data, null, 2));
-            }
+                res.render('dashboard', {title: 'Express node js app', body: 'express body' ,
+                    data: data.Items});}
+        });
 
-        });*/
-        let newuser = {
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            email: req.body.email
-        }
-        res.redirect('/');
 
     }
     else {
