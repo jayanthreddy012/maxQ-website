@@ -1,5 +1,4 @@
 <% include partials/header.ejs %>
-<%let date;%>>
 <table>
     <tr>
         <th>SHIPMENT_ID</th>
@@ -8,16 +7,45 @@
         <th>TEMP1</th>
         <th>TEMP2</th>
         <th>BATT</th>
+        <th>LID</th>
+        <th>LONGITUDE</th>
+        <th>LATITUDE</th>
     </tr>
     <% data.forEach(function (box){ %>
     <tr>
+        <%var date = new Date(box.event_time *1000);
+            // Year
+            var year = date.getFullYear();
+            var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+            // Month
+            var month = months_arr[date.getMonth()];
+
+            // Day
+            var day = date.getDate();
+
+            // Hours
+            var hours = date.getHours();
+
+            // Minutes
+            var minutes = "0" + date.getMinutes();
+
+            // Seconds
+            var seconds = "0" + date.getSeconds();
+            // Display date time in MM-dd-yyyy h:m:s format
+            var convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+        %>
         <td><%= box.shipment_id %></td>
-        <td><%= box.event_time %></td>
+        <td><%= convdataTime %></td>
         <% if(box.data != undefined){ %>
         <td><%= box.box_id %></td>
         <td><%= box.data.temp1 %></td>
         <td><%= box.data.temp2 %></td>
         <td><%= box.data.batt %></td>
+        <td><%= box.data.lid %></td>
+        <td><%= box.data.long %></td>
+        <td><%= box.data.lat %></td>
         <% } %>
     </tr>
     <% }) %>
